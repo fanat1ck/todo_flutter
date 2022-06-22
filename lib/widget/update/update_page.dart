@@ -1,26 +1,21 @@
-import 'dart:convert';
-import 'dart:developer';
-
-import 'package:http/http.dart' as http;
-
 import 'package:flutter/material.dart';
 
 import '../../domain/api_tasks/api_tasks.dart';
 
-class AddTaskWidget extends StatefulWidget {
-  const AddTaskWidget({Key? key}) : super(key: key);
+class UpdatePageWidget extends StatefulWidget {
+  const UpdatePageWidget({Key? key}) : super(key: key);
 
   @override
-  State<AddTaskWidget> createState() => _AddTaskWidgetState();
+  State<UpdatePageWidget> createState() => _UpdatePageWidgetState();
 }
 
-class _AddTaskWidgetState extends State<AddTaskWidget> {
+class _UpdatePageWidgetState extends State<UpdatePageWidget> {
   final _textStyle = const TextStyle(
       fontSize: 24, fontWeight: FontWeight.w400, color: Colors.black);
 
   final _buttonStyle = ButtonStyle(
       backgroundColor:
-          MaterialStateProperty.all(const Color.fromRGBO(255, 214, 0, 1)),
+          MaterialStateProperty.all(const Color.fromRGBO(255, 137, 137, 1)),
       overlayColor:
           MaterialStateProperty.all(const Color.fromRGBO(251, 239, 180, 1)),
       minimumSize: MaterialStateProperty.all(const Size(169, 50)),
@@ -111,7 +106,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                                 padding: const EdgeInsets.only(left: 24),
                                 child: TextButton(
                                   child: const Text(
-                                    'Прикріпити файл',
+                                    'Вкладене зображення',
                                     style: TextStyle(
                                         fontSize: 18,
                                         color: Colors.black,
@@ -164,56 +159,26 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                 const Divider(),
                 ElevatedButton(
                   onPressed: () async {
-                    const url = 'https://6na9svs6gyb5.softwars.com.ua/tasks';
-
-                    var response = await http.post(
-                      Uri.parse(url),
-                      body: jsonEncode({
-                        'taskId': 'taskId',
-                        'status': 1,
-                        'name': 'name',
-                        'type': 1,
-                        'description': 'description',
-                        'file': 'file',
-                        'finishDate': 'finishDate',
-                        'urgent': 1,
-                        'syncTime': 'syncTime',
-                      }),
-                    );
-
-                    // var response = await apiClient.createData(
+                    // final respons = await apiClient.createData(
                     //     'ewqfdg',
-                    //     1,
+                    //     'status',
                     //     'name',
-                    //     1,
+                    //     'type',
                     //     'description',
                     //     'file',
                     //     'finishDate',
-                    //     1,
+                    //     'urgent',
                     //     'syncTime');
-                    log(response.statusCode.toString());
-                    // print(response.body);
-                    // print('$response Respons');
-                    // if (response) {
+
+                    // if (respons) {
                     //   Navigator.popAndPushNamed(context, '/todo');
                     // } else {
                     //   throw Exception('Failed to create tasks.');
                     // }
-
-                    // ApiClient().postTasks();
-                    // ApiClient().createTask(
-                    // taskId: 'taskId',
-                    // status: 1,
-                    // name: 'name',
-                    // type: 1,
-                    // description: 'description',
-                    // finishDate: 'finishDate',
-                    // urgent: 1,
-                    // file: 'file');
                   },
                   style: _buttonStyle,
                   child: Text(
-                    'Створити',
+                    'Видалити',
                     style: _textStyle,
                   ),
                 )
@@ -247,7 +212,16 @@ class TopRowWidget extends StatelessWidget {
           'Назва завдання...',
           style: TextStyle(
               fontSize: 24, color: Colors.black, fontWeight: FontWeight.w400),
-        )
+        ),
+        const SizedBox(width: 30),
+        IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(
+            Icons.done,
+            size: 27,
+            color: Colors.amber,
+          ),
+        ),
       ],
     );
   }

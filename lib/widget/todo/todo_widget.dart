@@ -75,10 +75,12 @@ class _TodoListWidget extends StatefulWidget {
 
 class _TodoListWidgetState extends State<_TodoListWidget> {
   ApiClient apiClient = ApiClient();
-  List<DataTasks> listDataTasks = [];
+  var listDataTasks = [];
 
   getData() async {
-    dynamic listDataTasks = await apiClient.getData();
+    // listDataTasks = await apiClient.getData();
+    ApiClient().getTask();
+
     setState(() {});
   }
 
@@ -140,7 +142,9 @@ class _TodoListRowWidget extends StatelessWidget {
           focusColor: const Color.fromRGBO(255, 137, 137, 1),
           leading: const Icon(Icons.mobile_friendly),
           trailing: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.popAndPushNamed(context, 'update_page');
+            },
             child: Image(
               image: AssetImage('images/rectangle.png'),
             ),
@@ -150,7 +154,8 @@ class _TodoListRowWidget extends StatelessWidget {
           //  Text('${_data?.name}'),
           subtitle: Text(
             // '${_data?.finishDate}',
-            '${tasks.finishDate}',
+            // '${tasks.finishDate}',
+            '',
             style: const TextStyle(fontSize: 11),
           ),
           onTap: () {

@@ -20,13 +20,13 @@ Map<String, dynamic> _$TaskToJson(Task instance) => <String, dynamic>{
 
 DataTasks _$DataTasksFromJson(Map<String, dynamic> json) => DataTasks(
       taskId: json['taskId'] as String?,
-      status: json['status'] as String?,
+      status: json['status'] as int?,
       name: json['name'] as String?,
-      type: json['type'] as String?,
+      type: json['type'] as int?,
       description: json['description'] as String?,
       file: json['file'] as String?,
       finishDate: json['finishDate'] as String?,
-      urgent: json['urgent'] as String?,
+      urgent: json['urgent'] as int?,
       syncTime: json['syncTime'] as String?,
     );
 

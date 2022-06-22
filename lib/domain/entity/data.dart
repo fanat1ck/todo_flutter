@@ -15,15 +15,15 @@ class Task {
 @JsonSerializable()
 class DataTasks {
   String? taskId;
-  String? status;
+  int? status;
   String? name;
-  String? type;
+  int? type;
 
   String? description;
   String? file;
 
   String? finishDate;
-  String? urgent;
+  int? urgent;
   String? syncTime;
   DataTasks({
     this.taskId,
